@@ -1,0 +1,33 @@
+name: Appium Tests with BrowserStack
+
+on:
+    push:
+        branches:
+            - main # Replace with your branch name
+
+jobs:
+    appium-tests:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v1
+              with:
+                  node-version: "18"
+
+            - name: Install dependencies
+              run: npm install # Or yarn install based on your setup
+
+            - name: Run Appium Tests
+              run: |
+                  export BROWSERSTACK_USERNAME=oleksandrkarpovy_QIWOXJ
+                  export BROWSERSTACK_ACCESS_KEY=ocKudbyfM6z3yp2szY3U
+                  export BROWSERSTACK_APP_ID=bs://429443e9df65e5f4ec9ec14fafb5866ab6727abc
+                  # Additional export statements or configuration needed
+
+                  # Run your Appium tests with the necessary configurations
+                  # Replace with your actual test execution command
+                  npm run test:android:bs # Or the command you use to run your Appium tests
