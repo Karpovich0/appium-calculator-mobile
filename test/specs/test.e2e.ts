@@ -1,19 +1,17 @@
-import { expect, driver } from "@wdio/globals";
+import { expect, driver, browser } from "@wdio/globals";
 import entry from "./../screenobjects/all.screen.js";
 
 const SEARCH_VALUE = "Algebra";
 
 describe("Calculator", () => {
-	it.only("Categories functionality", async () => {
-		(await entry.homeScreen.isElementDisplayed(entry.homeScreen.elements.acceptPersonalData)) &&
-			(await entry.homeScreen.clickElement(entry.homeScreen.elements.acceptPersonalData));
-
+	it("Categories functionality", async () => {
 		await entry.homeScreen.clickElement(entry.homeScreen.elements.categoryButton);
 		await entry.homeScreen.clickElement(entry.categoryScreen.elements.categoryAlgebraButton);
 		await expect(await entry.homeScreen.isElementDisplayed(entry.categoryScreen.elements.algebraHeader)).toBe(true);
 		await expect(await entry.homeScreen.isElementDisplayed(entry.categoryScreen.elements.algebraItemCategory)).toBe(
 			true
 		);
+		await entry.homeScreen.goBack();
 	});
 	it("Percentage functionality", async () => {
 		await entry.homeScreen.clickElement(entry.homeScreen.elements.percentageButton);
@@ -21,13 +19,13 @@ describe("Calculator", () => {
 		await entry.numpadComponent.inputNumber(200);
 		await entry.homeScreen.clickElement(entry.percentageScreen.elements.inputPercentageTwo);
 		await entry.numpadComponent.inputNumber(20);
-		//inputs are filled
 		await expect(
 			await entry.homeScreen.isElementDisplayed(entry.percentageScreen.elements.percentageResultOne)
 		).toBe(true);
 		await expect(
 			await entry.homeScreen.isElementDisplayed(entry.percentageScreen.elements.percentageResultTwo)
 		).toBe(true);
+		await entry.homeScreen.goBack();
 	});
 	it("Reset value functionality", async () => {
 		await entry.homeScreen.clickElement(entry.homeScreen.elements.lengthMode);
@@ -43,6 +41,7 @@ describe("Calculator", () => {
 		await entry.homeScreen.clearPage();
 
 		await expect(await entry.homeScreen.isElementDisplayed(entry.lengthScreen.elements.defaultLength)).toBe(true);
+		await entry.homeScreen.goBack();
 	});
 	it("Search functionality", async () => {
 		await entry.homeScreen.clickElement(entry.searchScreen.elements.searchInput);
@@ -50,6 +49,7 @@ describe("Calculator", () => {
 		await expect(await entry.homeScreen.getElement(entry.searchScreen.elements.algebraResult)).toHaveText(
 			SEARCH_VALUE
 		);
+		await entry.homeScreen.goBack();
 	});
 	it("Change measuring units", async () => {
 		await entry.homeScreen.clickElement(entry.homeScreen.elements.settingsButton);

@@ -10,10 +10,18 @@ class homeScreen extends Page {
 		resetButton: '//android.widget.Button[@content-desc="Clear"]',
 		confirmResetButton: '//android.widget.Button[@resource-id="android:id/button1"]',
 		settingsButton: '//android.widget.Button[@content-desc="Settings"]',
+		goBackButton: '//android.widget.ImageButton[@content-desc="Navigate up"]',
+		goBackButton2: '//android.widget.ImageView[@resource-id="all.in.one.calculator:id/searchBtn"]',
 	};
 	public async clearPage(): Promise<void> {
 		await this.clickElement(this.elements.resetButton);
 		await this.clickElement(this.elements.confirmResetButton);
+	}
+	public async goBack(): Promise<void> {
+		(await this.isElementDisplayed(this.elements.goBackButton)) &&
+			(await this.clickElement(this.elements.goBackButton));
+		(await this.isElementDisplayed(this.elements.goBackButton2)) &&
+			(await this.clickElement(this.elements.goBackButton2));
 	}
 }
 
