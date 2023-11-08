@@ -18,10 +18,11 @@ class homeScreen extends Page {
 		await this.clickElement(this.elements.confirmResetButton);
 	}
 	public async goBack(): Promise<void> {
-		(await this.isElementDisplayed(this.elements.goBackButton)) &&
-			(await this.clickElement(this.elements.goBackButton));
-		(await this.isElementDisplayed(this.elements.goBackButton2)) &&
-			(await this.clickElement(this.elements.goBackButton2));
+		if (await this.isElementDisplayed(this.elements.goBackButton2)) {
+			await this.clickElement(this.elements.goBackButton2);
+		} else {
+			await this.clickElement(this.elements.goBackButton);
+		}
 	}
 }
 
