@@ -11,10 +11,11 @@ export const config = {
 	hostname: "hub.browserstack.com",
 
 	beforeTest: async function () {
-		await driver.closeApp();
-		await driver.activateApp("all.in.one.calculator");
 		(await entry.homeScreen.isElementDisplayed(entry.homeScreen.elements.acceptPersonalData)) &&
 			(await entry.homeScreen.clickElement(entry.homeScreen.elements.acceptPersonalData));
+		await driver.closeApp();
+		await driver.activateApp("all.in.one.calculator");
+		await driver.setOrientation("PORTRAIT");
 	},
 
 	capabilities: [
