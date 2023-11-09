@@ -11,7 +11,6 @@ describe("Calculator", () => {
 		await expect(await entry.homeScreen.isElementDisplayed(entry.categoryScreen.elements.algebraItemCategory)).toBe(
 			true
 		);
-		await entry.homeScreen.goBack();
 	});
 	it("Percentage functionality", async () => {
 		await entry.homeScreen.clickElement(entry.homeScreen.elements.percentageButton);
@@ -25,7 +24,6 @@ describe("Calculator", () => {
 		await expect(
 			await entry.homeScreen.isElementDisplayed(entry.percentageScreen.elements.percentageResultTwo)
 		).toBe(true);
-		await entry.homeScreen.goBack();
 	});
 	it("Reset value functionality", async () => {
 		await entry.homeScreen.clickElement(entry.homeScreen.elements.lengthMode);
@@ -41,7 +39,6 @@ describe("Calculator", () => {
 		await entry.homeScreen.clearPage();
 
 		await expect(await entry.homeScreen.isElementDisplayed(entry.lengthScreen.elements.defaultLength)).toBe(true);
-		await entry.homeScreen.goBack();
 	});
 	it("Search functionality", async () => {
 		await entry.homeScreen.clickElement(entry.searchScreen.elements.searchInput);
@@ -49,7 +46,6 @@ describe("Calculator", () => {
 		await expect(await entry.homeScreen.getElement(entry.searchScreen.elements.algebraResult)).toHaveText(
 			SEARCH_VALUE
 		);
-		await entry.homeScreen.goBack();
 	});
 	it("Change measuring units", async () => {
 		await entry.homeScreen.clickElement(entry.homeScreen.elements.settingsButton);
