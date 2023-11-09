@@ -1,5 +1,5 @@
 import { config as sharedConfig } from "./wdio.conf.js";
-import { browser, driver } from "@wdio/globals";
+import { driver } from "@wdio/globals";
 import { join } from "path";
 import dotenv from "dotenv";
 import entry from "./../test/screenobjects/all.screen.js";

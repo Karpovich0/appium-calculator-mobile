@@ -1,5 +1,7 @@
 import { config as sharedConfig } from "./wdio.conf.js";
+import { driver } from "@wdio/globals";
 import dotenv from "dotenv";
+import entry from "./../test/screenobjects/all.screen.js";
 
 dotenv.config(); // Load environment variables from .env file
 export const config = {
@@ -7,6 +9,13 @@ export const config = {
 	user: process.env.BROWSERSTACK_USERNAME,
 	key: process.env.BROWSERSTACK_ACCESS_KEY,
 	hostname: "hub.browserstack.com",
+
+	beforeTest: async function () {
+		await driver.closeApp();
+		await driver.activateApp("all.in.one.calculator");
+		(await entry.homeScreen.isElementDisplayed(entry.homeScreen.elements.acceptPersonalData)) &&
+			(await entry.homeScreen.clickElement(entry.homeScreen.elements.acceptPersonalData));
+	},
 
 	capabilities: [
 		{
@@ -17,6 +26,7 @@ export const config = {
 			},
 		},
 	],
+
 	services: [
 		[
 			"browserstack",
