@@ -19,6 +19,7 @@ export const config = {
 			(await entry.homeScreen.clickElement(entry.homeScreen.elements.acceptPersonalData));
 		await driver.closeApp();
 		await driver.activateApp("all.in.one.calculator");
+		await driver.orientation("PORTRAIT");
 	},
 
 	capabilities: [
